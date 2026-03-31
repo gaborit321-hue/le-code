@@ -1,8 +1,9 @@
-const CACHE = 'le-code-v2';
+const CACHE = 'le-code-v3';
 const FILES = [
-  './index.html',
-  './manifest.json',
-  './icon.svg'
+  '/le-code/',
+  '/le-code/index.html',
+  '/le-code/manifest.json',
+  '/le-code/icon.svg'
 ];
 
 self.addEventListener('install', e => {
