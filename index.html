@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Code — Rappel Quotidien</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0c0c0b;
+    --surface: #141412;
+    --border: rgba(255,255,255,0.07);
+    --border-active: rgba(255,255,255,0.18);
+    --gold: #b8965a;
+    --gold-light: #d4b07a;
+    --text-primary: #e8e4dc;
+    --text-secondary: #9a9488;
+    --text-muted: #5c5850;
+    --accent: #c9a96e;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 48px 20px 64px;
+    letter-spacing: 0.04em;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 52px;
+  }
+
+  .header .date {
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 48px;
+    color: var(--gold-light);
+    letter-spacing: 0.12em;
+    line-height: 1.2;
+  }
+
+  .header .subtitle {
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.4;
+    margin: 20px auto 0;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    width: 100%;
+    max-width: 860px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 28px 28px 32px;
+    position: relative;
+    transition: border-color 0.3s, transform 0.2s;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 2px; height: 100%;
+    background: var(--gold);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .card:hover {
+    border-color: var(--border-active);
+    transform: translateY(-2px);
+  }
+
+  .card:hover::before {
+    opacity: 0.6;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .card-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+
+  .card-title {
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  .principle {
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .principle:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .principle-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    letter-spacing: 0.04em;
+  }
+
+  .principle-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    letter-spacing: 0.04em;
+  }
+
+  .card-full {
+    grid-column: 1 / -1;
+  }
+
+  .card-full .principles-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+
+  .card-full .principle {
+    padding: 0 24px 0 0;
+    margin: 0 24px 0 0;
+    border-bottom: none;
+    border-right: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .card-full .principle:last-child {
+    padding-right: 0;
+    margin-right: 0;
+    border-right: none;
+  }
+
+  .footer {
+    margin-top: 44px;
+    text-align: center;
+  }
+
+  .footer .quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    max-width: 480px;
+  }
+
+  .check-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+    justify-content: center;
+  }
+
+  .check-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    opacity: 0.3;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+
+  .check-dot.done {
+    background: var(--gold);
+    opacity: 0.8;
+  }
+
+  @media (max-width: 640px) {
+    .grid { grid-template-columns: 1fr; }
+    .card-full .principles-row { grid-template-columns: 1fr; }
+    .card-full .principle {
+      padding: 0 0 18px;
+      margin: 0 0 18px;
+      border-right: none;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .card-full .principle:last-child {
+      padding-bottom: 0; margin-bottom: 0; border-bottom: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="date" id="date-display"></div>
+  <h1>Le Code</h1>
+  <p class="subtitle">Rappel quotidien</p>
+  <div class="divider"></div>
+</header>
+
+<div class="grid">
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">I</span>
+      <span class="card-title">Routine</span>
+    </div>
+    <div class="principle">
+      <div class="principle-name">Se lever tôt</div>
+      <div class="principle-desc">Commencer avant les autres — pas de chaos, pas de précipitation</div>
+    </div>
+    <div class="principle">
+      <div class="principle-name">S'habiller bien</div>
+      <div class="principle-desc">Même les jours ordinaires — propre, simple, affûté</div>
+    </div>
+    <div class="principle">
+      <div class="principle-name">Anticiper</div>
+      <div class="principle-desc">Savoir ce qui compte aujourd'hui plutôt que de réagir</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">II</span>
+      <span class="card-title">Communication</span>
+    </div>
+    <div class="principle">
+      <div class="principle-name">Parler moins</div>
+      <div class="principle-desc">Ne pas remplir le silence — chaque mot doit peser</div>
+    </div>
+    <div class="principle">
+      <div class="principle-name">Voix posée</div>
+      <div class="principle-desc">Une voix calme pèse plus lourd qu'une voix forte</div>
+    </div>
+    <div class="principle">
+      <div class="principle-name">Ne pas se justifier</div>
+      <div class="principle-desc">Tout le monde n'a pas besoin de comprendre tes mouvements</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">III</span>
+      <span class="card-title">En public</span>
+    </div>
+    <div class="principle">
+      <div class="principle-name">Marcher avec intention</div>
+      <div class="principle-desc">Bouger comme si tu sais où tu vas</div>
+    </div>
+    <div class="principle">
+      <div class="principle-name">Contact visuel</div>
+      <div class="principle-desc">La confiance sans un mot — le respect s'impose</div>
+    </div>
+    <div class="principle">
+      <div class="principle-name">Rester composé</div>
+      <div class="principle-desc">Aucun geste nerveux — toujours maître de toi-même</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">IV</span>
+      <span class="card-title">Discipline</span>
+    </div>
+    <div class="principle">
+      <div class="principle-name">Le faire quand même</div>
+      <div class="principle-desc">Surtout quand tu n'en as pas envie — c'est là que ça compte</div>
+    </div>
+    <div class="principle">
+      <div class="principle-name">Maîtriser ses émotions</div>
+      <div class="principle-desc">Ne pas réagir à tout — prendre un instant, rester en contrôle</div>
+    </div>
+    <div class="principle">
+      <div class="principle-name">Être constant</div>
+      <div class="principle-desc">Mêmes habitudes chaque jour — même quand personne ne regarde</div>
+    </div>
+  </div>
+
+  <div class="card card-full">
+    <div class="card-header">
+      <span class="card-num">V</span>
+      <span class="card-title">Vie sociale</span>
+    </div>
+    <div class="principles-row">
+      <div class="principle">
+        <div class="principle-name">Choisir ses gens</div>
+        <div class="principle-desc">Tout le monde ne mérite pas ton temps ni ton énergie — sois sélectif</div>
+      </div>
+      <div class="principle">
+        <div class="principle-name">Rester discret</div>
+        <div class="principle-desc">Garder une part de ta vie pour toi — tout n'a pas besoin d'être partagé</div>
+      </div>
+      <div class="principle">
+        <div class="principle-name">Tenir sa parole</div>
+        <div class="principle-desc">Si tu le dis, tu le fais — les gens retiennent la fiabilité avant tout</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <p class="quote">« La discipline est la forme la plus haute de l'estime de soi. »</p>
+  <div class="check-row" id="checks"></div>
+</footer>
+
+<script>
+  const days = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+  const months = ['jan','fév','mar','avr','mai','jun','jul','août','sep','oct','nov','déc'];
+  const now = new Date();
+  document.getElementById('date-display').textContent =
+    days[now.getDay()] + ' ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+
+  const checks = document.getElementById('checks');
+  const stored = JSON.parse(localStorage.getItem('gc-checks') || '{}');
+  const key = now.toDateString();
+  let state = stored[key] || Array(5).fill(false);
+
+  function renderChecks() {
+    checks.innerHTML = '';
+    state.forEach((done, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'check-dot' + (done ? ' done' : '');
+      dot.title = ['Routine','Communication','En public','Discipline','Vie sociale'][i];
+      dot.onclick = () => {
+        state[i] = !state[i];
+        stored[key] = state;
+        localStorage.setItem('gc-checks', JSON.stringify(stored));
+        renderChecks();
+      };
+      checks.appendChild(dot);
+    });
+  }
+  renderChecks();
+</script>
+
+</body>
+</html>
