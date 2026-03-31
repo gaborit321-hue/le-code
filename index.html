@@ -41,10 +41,7 @@
     letter-spacing: 0.04em;
   }
 
-  .header {
-    text-align: center;
-    margin-bottom: 52px;
-  }
+  .header { text-align: center; margin-bottom: 52px; }
 
   .header .date {
     font-size: 13px;
@@ -72,8 +69,7 @@
   }
 
   .divider {
-    width: 40px;
-    height: 1px;
+    width: 40px; height: 1px;
     background: var(--gold);
     opacity: 0.4;
     margin: 20px auto 0;
@@ -105,14 +101,8 @@
     transition: opacity 0.3s;
   }
 
-  .card:hover {
-    border-color: var(--border-active);
-    transform: translateY(-2px);
-  }
-
-  .card:hover::before {
-    opacity: 0.6;
-  }
+  .card:hover { border-color: var(--border-active); transform: translateY(-2px); }
+  .card:hover::before { opacity: 0.6; }
 
   .card-header {
     display: flex;
@@ -145,11 +135,7 @@
     border-bottom: 1px solid rgba(255,255,255,0.04);
   }
 
-  .principle:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
-  }
+  .principle:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
 
   .principle-name {
     font-family: 'Cormorant Garamond', serif;
@@ -167,9 +153,7 @@
     letter-spacing: 0.04em;
   }
 
-  .card-full {
-    grid-column: 1 / -1;
-  }
+  .card-full { grid-column: 1 / -1; }
 
   .card-full .principles-row {
     display: grid;
@@ -184,16 +168,9 @@
     border-right: 1px solid rgba(255,255,255,0.04);
   }
 
-  .card-full .principle:last-child {
-    padding-right: 0;
-    margin-right: 0;
-    border-right: none;
-  }
+  .card-full .principle:last-child { padding-right: 0; margin-right: 0; border-right: none; }
 
-  .footer {
-    margin-top: 44px;
-    text-align: center;
-  }
+  .footer { margin-top: 44px; text-align: center; }
 
   .footer .quote {
     font-family: 'Cormorant Garamond', serif;
@@ -220,10 +197,7 @@
     transition: all 0.25s;
   }
 
-  .check-dot.done {
-    background: var(--gold);
-    opacity: 0.8;
-  }
+  .check-dot.done { background: var(--gold); opacity: 0.8; }
 
   @media (max-width: 640px) {
     .grid { grid-template-columns: 1fr; }
@@ -234,9 +208,7 @@
       border-right: none;
       border-bottom: 1px solid rgba(255,255,255,0.04);
     }
-    .card-full .principle:last-child {
-      padding-bottom: 0; margin-bottom: 0; border-bottom: none;
-    }
+    .card-full .principle:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: none; }
   }
 </style>
 </head>
@@ -385,7 +357,7 @@
   renderChecks();
 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js');
+    navigator.serviceWorker.register('./sw.js');
   }
 </script>
 
