@@ -10,21 +10,19 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Le Code">
-<meta name="theme-color" content="#0c0c0b">
+<meta name="theme-color" content="#1a1814">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #0c0c0b;
-    --surface: #141412;
-    --border: rgba(255,255,255,0.07);
-    --border-active: rgba(255,255,255,0.18);
-    --gold: #b8965a;
-    --gold-light: #d4b07a;
-    --text-primary: #e8e4dc;
-    --text-secondary: #9a9488;
-    --text-muted: #5c5850;
-    --accent: #c9a96e;
+    --bg: #1a1814;
+    --surface: #f5f0e8;
+    --border: rgba(0,0,0,0.09);
+    --border-active: rgba(0,0,0,0.22);
+    --gold: #96722a;
+    --text-primary: #1c1a16;
+    --text-secondary: #4a4438;
+    --text-muted: #8a7d6a;
   }
 
   body {
@@ -47,7 +45,7 @@
     font-size: 13px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--text-muted);
+    color: rgba(245,240,232,0.4);
     margin-bottom: 16px;
   }
 
@@ -55,7 +53,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-weight: 300;
     font-size: 48px;
-    color: var(--gold-light);
+    color: #f5f0e8;
     letter-spacing: 0.12em;
     line-height: 1.2;
   }
@@ -64,14 +62,13 @@
     font-size: 13px;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: var(--text-muted);
+    color: rgba(245,240,232,0.45);
     margin-top: 8px;
   }
 
   .divider {
     width: 40px; height: 1px;
-    background: var(--gold);
-    opacity: 0.4;
+    background: rgba(245,240,232,0.35);
     margin: 20px auto 0;
   }
 
@@ -102,7 +99,7 @@
   }
 
   .card:hover { border-color: var(--border-active); transform: translateY(-2px); }
-  .card:hover::before { opacity: 0.6; }
+  .card:hover::before { opacity: 0.7; }
 
   .card-header {
     display: flex;
@@ -118,7 +115,6 @@
     font-style: italic;
     font-size: 17px;
     color: var(--gold);
-    opacity: 0.7;
   }
 
   .card-title {
@@ -132,7 +128,7 @@
   .principle {
     margin-bottom: 18px;
     padding-bottom: 18px;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
   }
 
   .principle:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
@@ -165,7 +161,7 @@
     padding: 0 24px 0 0;
     margin: 0 24px 0 0;
     border-bottom: none;
-    border-right: 1px solid rgba(255,255,255,0.04);
+    border-right: 1px solid rgba(0,0,0,0.05);
   }
 
   .card-full .principle:last-child { padding-right: 0; margin-right: 0; border-right: none; }
@@ -176,7 +172,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: 18px;
-    color: var(--text-muted);
+    color: rgba(245,240,232,0.35);
     letter-spacing: 0.06em;
     max-width: 480px;
   }
@@ -191,13 +187,17 @@
   .check-dot {
     width: 8px; height: 8px;
     border-radius: 50%;
-    border: 1px solid var(--gold);
-    opacity: 0.3;
+    border: 1px solid rgba(245,240,232,0.4);
+    opacity: 0.5;
     cursor: pointer;
     transition: all 0.25s;
   }
 
-  .check-dot.done { background: var(--gold); opacity: 0.8; }
+  .check-dot.done {
+    background: #f5f0e8;
+    opacity: 0.8;
+    border-color: #f5f0e8;
+  }
 
   @media (max-width: 640px) {
     .grid { grid-template-columns: 1fr; }
@@ -206,7 +206,7 @@
       padding: 0 0 18px;
       margin: 0 0 18px;
       border-right: none;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
     }
     .card-full .principle:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: none; }
   }
