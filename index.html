@@ -16,13 +16,14 @@
 
   :root {
     --bg: #1a1814;
-    --surface: #f5f0e8;
-    --border: rgba(0,0,0,0.09);
-    --border-active: rgba(0,0,0,0.22);
+    --card-bg: #f0ebe0;
+    --border: rgba(150, 114, 42, 0.3);
+    --border-active: rgba(150, 114, 42, 0.75);
     --gold: #96722a;
+    --gold-light: #c4a053;
     --text-primary: #1c1a16;
-    --text-secondary: #4a4438;
-    --text-muted: #8a7d6a;
+    --text-secondary: #3a3226;
+    --text-muted: #6b5e4a;
   }
 
   body {
@@ -39,37 +40,56 @@
     letter-spacing: 0.04em;
   }
 
-  .header { text-align: center; margin-bottom: 52px; }
+  .header {
+    text-align: center;
+    margin-bottom: 52px;
+  }
+
+  .logo-wrap {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 20px;
+    position: relative;
+  }
+
+  .logo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1) sepia(1) saturate(0.6) brightness(1.05);
+    opacity: 0.92;
+  }
 
   .header .date {
-    font-size: 13px;
-    letter-spacing: 0.2em;
+    font-size: 12px;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(245,240,232,0.4);
-    margin-bottom: 16px;
+    color: rgba(245,240,232,0.38);
+    margin-bottom: 14px;
   }
 
   .header h1 {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 300;
-    font-size: 48px;
-    color: #f5f0e8;
-    letter-spacing: 0.12em;
-    line-height: 1.2;
+    font-size: 52px;
+    color: var(--gold-light);
+    letter-spacing: 0.18em;
+    line-height: 1.1;
   }
 
   .header .subtitle {
-    font-size: 13px;
-    letter-spacing: 0.25em;
+    font-size: 12px;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: rgba(245,240,232,0.45);
+    color: rgba(196, 160, 83, 0.5);
     margin-top: 8px;
   }
 
   .divider {
-    width: 40px; height: 1px;
-    background: rgba(245,240,232,0.35);
-    margin: 20px auto 0;
+    width: 48px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 18px auto 0;
   }
 
   .grid {
@@ -81,11 +101,11 @@
   }
 
   .card {
-    background: var(--surface);
+    background: var(--card-bg);
     border: 1px solid var(--border);
     padding: 28px 28px 32px;
     position: relative;
-    transition: border-color 0.3s, transform 0.2s;
+    transition: border-color 0.3s, transform 0.2s, box-shadow 0.3s;
   }
 
   .card::before {
@@ -98,8 +118,13 @@
     transition: opacity 0.3s;
   }
 
-  .card:hover { border-color: var(--border-active); transform: translateY(-2px); }
-  .card:hover::before { opacity: 0.7; }
+  .card:hover {
+    border-color: var(--border-active);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  }
+
+  .card:hover::before { opacity: 1; }
 
   .card-header {
     display: flex;
@@ -107,19 +132,19 @@
     gap: 12px;
     margin-bottom: 24px;
     padding-bottom: 16px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(150, 114, 42, 0.2);
   }
 
   .card-num {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: 17px;
+    font-size: 18px;
     color: var(--gold);
   }
 
   .card-title {
-    font-size: 14px;
-    letter-spacing: 0.2em;
+    font-size: 13px;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--text-secondary);
     font-weight: 400;
@@ -128,25 +153,29 @@
   .principle {
     margin-bottom: 18px;
     padding-bottom: 18px;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
   }
 
-  .principle:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .principle:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
 
   .principle-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 400;
     color: var(--text-primary);
     margin-bottom: 6px;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.03em;
   }
 
   .principle-desc {
     font-size: 14px;
     color: var(--text-muted);
-    line-height: 1.6;
-    letter-spacing: 0.04em;
+    line-height: 1.65;
+    letter-spacing: 0.03em;
   }
 
   .card-full { grid-column: 1 / -1; }
@@ -158,45 +187,54 @@
   }
 
   .card-full .principle {
-    padding: 0 24px 0 0;
-    margin: 0 24px 0 0;
+    padding: 0 28px 0 0;
+    margin: 0 28px 0 0;
     border-bottom: none;
-    border-right: 1px solid rgba(0,0,0,0.05);
+    border-right: 1px solid rgba(150, 114, 42, 0.15);
   }
 
-  .card-full .principle:last-child { padding-right: 0; margin-right: 0; border-right: none; }
+  .card-full .principle:last-child {
+    padding-right: 0;
+    margin-right: 0;
+    border-right: none;
+  }
 
-  .footer { margin-top: 44px; text-align: center; }
+  .footer {
+    margin-top: 44px;
+    text-align: center;
+  }
 
   .footer .quote {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: 18px;
-    color: rgba(245,240,232,0.35);
-    letter-spacing: 0.06em;
-    max-width: 480px;
+    font-size: 19px;
+    color: var(--gold-light);
+    letter-spacing: 0.07em;
+    max-width: 500px;
+    opacity: 0.7;
   }
 
   .check-row {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     margin-top: 24px;
     justify-content: center;
   }
 
   .check-dot {
-    width: 8px; height: 8px;
+    width: 9px; height: 9px;
     border-radius: 50%;
-    border: 1px solid rgba(245,240,232,0.4);
+    border: 1px solid rgba(196, 160, 83, 0.5);
     opacity: 0.5;
     cursor: pointer;
     transition: all 0.25s;
   }
 
   .check-dot.done {
-    background: #f5f0e8;
-    opacity: 0.8;
-    border-color: #f5f0e8;
+    background: var(--gold-light);
+    opacity: 1;
+    border-color: var(--gold-light);
+    box-shadow: 0 0 6px rgba(196, 160, 83, 0.5);
   }
 
   @media (max-width: 640px) {
@@ -206,15 +244,23 @@
       padding: 0 0 18px;
       margin: 0 0 18px;
       border-right: none;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
+      border-bottom: 1px solid rgba(150, 114, 42, 0.15);
     }
-    .card-full .principle:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: none; }
+    .card-full .principle:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+    .header h1 { font-size: 40px; }
   }
 </style>
 </head>
 <body>
 
 <header class="header">
+  <div class="logo-wrap">
+    <img src="logo.png" alt="Le Code logo">
+  </div>
   <div class="date" id="date-display"></div>
   <h1>Le Code</h1>
   <p class="subtitle">Rappel quotidien</p>
