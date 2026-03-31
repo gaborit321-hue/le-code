@@ -1,0 +1,22 @@
+{
+  "name": "Le Code",
+  "short_name": "Le Code",
+  "description": "Rappel quotidien — Les 5 principes",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0c0c0b",
+  "theme_color": "#0c0c0b",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/192x192/0c0c0b/b8965a?text=LC",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://via.placeholder.com/512x512/0c0c0b/b8965a?text=LC",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
